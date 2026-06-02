@@ -18,6 +18,7 @@ export interface Account {
     peer_login_expiration: number;
     peer_inactivity_expiration_enabled: boolean;
     peer_inactivity_expiration: number;
+    ssh_jwt_max_token_age?: number;
     groups_propagation_enabled: boolean;
     jwt_groups_enabled: boolean;
     jwt_groups_claim_name: string;
