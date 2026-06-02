@@ -112,6 +112,10 @@ export default function AuthenticationTab({ account }: Readonly<Props>) {
     timeRange: ["minutes", "hours", "days"],
   });
 
+  const [sshJWTMaxTokenAge, setSSHJWTMaxTokenAge] = useState<string>(() =>
+    String(account.settings.ssh_jwt_max_token_age ?? 0),
+  );
+
   /**
    * Save changes
    */
@@ -127,10 +131,13 @@ export default function AuthenticationTab({ account }: Readonly<Props>) {
     peerInactivityExpiresIn,
     peerInactivityExpireInterval,
     isLocalMFAEnabled,
+    sshJWTMaxTokenAge,
   ]);
 
   const saveChanges = async () => {
     const expiration = convertToSeconds(expiresIn, expireInterval);
+    const sshJWTMaxTokenAgeSeconds =
+      sshJWTMaxTokenAge.trim() === "" ? 0 : Number(sshJWTMaxTokenAge);
 
     notify({
       title: "Save Authentication Settings",
@@ -168,6 +175,7 @@ export default function AuthenticationTab({ account }: Readonly<Props>) {
             peerInactivityExpiresIn,
             peerInactivityExpireInterval,
             isLocalMFAEnabled,
+            sshJWTMaxTokenAge,
           ]);
         }),
       loadingMessage: "Saving the authentication settings...",
