@@ -426,6 +426,37 @@ export default function AuthenticationTab({ account }: Readonly<Props>) {
               />
             </div>
           </div>
+
+          <div className={"flex flex-col"}>
+            <div
+              className={
+                "border border-nb-gray-900 rounded-md bg-nb-gray-940 px-[1.28rem] pt-4 pb-5 flex flex-col gap-4"
+              }
+            >
+              <div className={cn("flex justify-between gap-10 mt-2")}>
+                <div className={"w-full"}>
+                  <Label>SSH JWT Max Token Age</Label>
+                  <HelpText>
+                    Maximum age in seconds for JWT tokens accepted by NetBird SSH. Use 0
+                    for the default 10 minute window.
+                  </HelpText>
+                </div>
+
+                <div className={"w-full"}>
+                  <Input
+                    placeholder={"0"}
+                    min={0}
+                    disabled={!permission.settings.update}
+                    data-cy={"ssh-jwt-max-token-age-input"}
+                    className={"w-full"}
+                    value={sshJWTMaxTokenAge}
+                    type={"number"}
+                    onChange={(e) => setSSHJWTMaxTokenAge(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
