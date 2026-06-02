@@ -161,6 +161,7 @@ export default function AuthenticationTab({ account }: Readonly<Props>) {
               user_approval_required: userApprovalRequired,
             },
             local_mfa_enabled: isLocalMFAEnabled,
+            ssh_jwt_max_token_age: sshJWTMaxTokenAgeSeconds,
           },
         } as Account)
         .then(() => {
